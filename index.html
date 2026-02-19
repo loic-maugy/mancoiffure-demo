@@ -12,7 +12,7 @@
 
   <style>
     body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; }
-    header { padding:60px 20px; text-align:center; background:#000; }
+    header { padding:60px 20px; text-align:center; background:#000; position:relative; }
     header h1 { font-size:3em; margin:0; }
     header p { color:#ccc; }
     section { padding:60px 20px; max-width:1000px; margin:auto; }
@@ -42,11 +42,26 @@
       box-shadow:0 6px 20px rgba(212,167,98,0.6);
     }
     footer { background:#000; padding:30px; text-align:center; color:#777; }
+
+    .status-badge {
+      position:absolute;
+      top:20px;
+      right:20px;
+      padding:10px 18px;
+      border-radius:25px;
+      font-weight:bold;
+      font-size:0.9em;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .open { background:#1db954; color:#000; }
+    .closed { background:#e53935; color:#fff; }
   </style>
 </head>
 <body>
 
 <header>
+  <div id="status" class="status-badge">Chargement...</div>
   <h1>MANCOIFFURE</h1>
   <p>Chez MANCOIFFURE, Le style qui vous ressemble</p>
   <a href="#contact" class="map-button" style="margin-top:25px; display:inline-block;">Prendre rendez‑vous</a>
@@ -84,7 +99,6 @@
 <section>
   <h2 class="section-title">Photos</h2>
   <div class="gallery">
-    <img src="phtos 1.jpg" alt="deventure du salon" />
     <img src="https://i.pinimg.com/originals/d3/19/cf/d319cfbb51fa761c35a82b954e97e19b.jpg" alt="Coupe 1" />
     <img src="https://www.masculin.com/wp-content/uploads/sites/2/2021/04/coupe-traits.jpg" alt="Coupe 2" />
     <img src="https://i.pinimg.com/originals/f0/59/6f/f0596f5dbd13bac80f505b2f4194db89.jpg" alt="Coupe 3" />
@@ -136,6 +150,35 @@
   }).addTo(map);
 
   L.marker([lat, lng]).addTo(map).bindPopup('MANCOIFFURE');
+</script>
+
+<script>
+  // ====== HORAIRES MODIFIABLES FACILEMENT ======
+  const openHour = 9;   // Heure d'ouverture (9h00)
+  const closeHour = 19; // Heure de fermeture (19h00)
+
+  function updateStatus() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const statusElement = document.getElementById('status');
+
+    if (
+      (currentHour > openHour && currentHour < closeHour) ||
+      (currentHour === openHour) ||
+      (currentHour === closeHour && currentMinutes === 0)
+    ) {
+      statusElement.textContent = "OUVERT de 9h - 19h";
+      statusElement.classList.remove('closed');
+      statusElement.classList.add('open');
+    } else {
+      statusElement.textContent = "FERMÉ • Réouverture à 9h";
+      statusElement.classList.remove('open');
+      statusElement.classList.add('closed');
+    }
+  }
+
+  updateStatus();
 </script>
 
 </body>
