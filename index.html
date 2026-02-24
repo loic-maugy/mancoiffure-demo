@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head> 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManCoiffure – Salon de coiffure</title>
-  <meta name="description" content="ManCoiffure – Salon de coiffure moderne. Coupes homme, femme, enfant." />
-  <meta name="google-site-verification" content="hvnxrzY-nPM_RkM4gEInnLymdrJE0UUeZN0kPYIPFzw" />
-
+  <title>MANCOIFFURE – Coiffeur à Flayosc</title>
+  <meta name="description" content="MANCOIFFURE à Flayosc – Coupe homme, barbe, enfant. Ouvert 7j/7 de 9h à 19h. Appelez maintenant." />
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; }
-    header { padding:60px 20px; text-align:center; background:#000; position:relative; }
-    header h1 { font-size:3em; margin:0; }
-    header p { color:#ccc; }
-    section { padding:60px 20px; max-width:1000px; margin:auto; }
-    h2.section-title { font-size:2.5em; font-weight:bold; text-decoration: underline; text-align:center; margin-bottom:40px; }
+    body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; scroll-behavior:smooth; }
+    header { padding:100px 20px; text-align:center; background:linear-gradient(135deg,#000,#1a1a1a); position:relative; }
+    header h1 { font-size:3em; margin:0; letter-spacing:2px; }
+    header p { color:#ccc; font-size:1.2em; margin-top:15px; }
+    section { padding:80px 20px; max-width:1100px; margin:auto; }
+    h2.section-title { font-size:2.3em; text-align:center; margin-bottom:50px; }
+
+    .hero-highlight {
+      max-width:800px;
+      margin:40px auto 0 auto;
+      font-size:1.15em;
+      color:#ddd;
+      line-height:1.6;
+    }
+
     .services { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; }
-    .card { background:#1c1c1c; padding:30px; border-radius:15px; font-size:1.2em; text-align:center; }
+    .card { background:#1c1c1c; padding:30px; border-radius:15px; font-size:1.1em; text-align:center; transition:0.3s; }
+    .card:hover { transform:translateY(-5px); background:#222; }
+
     .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
-    .gallery img { width:100%; height:auto; border-radius:10px; display:block; }
-    #map { width:100%; height:350px; border-radius:10px; }
-    .map-button {
+    .gallery img { width:100%; border-radius:12px; display:block; transition:0.3s; }
+    .gallery img:hover { transform:scale(1.03); }
+
+    #map { width:100%; height:350px; border-radius:12px; }
+
+    .btn {
       display:inline-block;
-      margin-top:10px;
-      padding:14px 28px;
+      margin:10px;
+      padding:14px 30px;
       background:#d4a762;
       color:#000;
       text-decoration:none;
       border-radius:30px;
       font-weight:bold;
-      font-size:1.1em;
+      font-size:1.05em;
       box-shadow:0 4px 15px rgba(212,167,98,0.4);
       transition:all 0.3s ease;
     }
+    .btn:hover { background:#e6b878; transform:translateY(-2px); }
 
-    .map-button:hover {
-      background:#e6b878;
-      transform:translateY(-2px);
-      box-shadow:0 6px 20px rgba(212,167,98,0.6);
-    }
-    footer { background:#000; padding:30px; text-align:center; color:#777; }
+    footer { background:#000; padding:40px 20px; text-align:center; color:#777; font-size:0.9em; }
+
+    .legal-section { background:#141414; border-radius:15px; padding:30px; margin-top:30px; color:#ccc; line-height:1.6; }
 
     .status-badge {
       position:absolute;
@@ -51,9 +62,7 @@
       border-radius:25px;
       font-weight:bold;
       font-size:0.9em;
-      box-shadow:0 4px 12px rgba(0,0,0,0.4);
     }
-
     .open { background:#1db954; color:#000; }
     .closed { background:#e53935; color:#fff; }
   </style>
@@ -63,76 +72,78 @@
 <header>
   <div id="status" class="status-badge">Chargement...</div>
   <h1>MANCOIFFURE</h1>
-  <p>Chez MANCOIFFURE, Le style qui vous ressemble</p>
-  <a href="tel:0766963980" class="map-button">Appeler maintenant</a>
+  <p>Votre coiffeur à Flayosc – Coupe moderne & barbe soignée</p>
+  <p>Ouvert 7j/7 de 9h à 19h</p>
+  <a href="tel:0766963980" class="btn">📞 Appeler maintenant</a>
+  <a href="#map" class="btn">📍 Itinéraire</a>
 </header>
+
+<section>
+  <h2 class="section-title">L’expertise au service de votre style</h2>
+  <div class="hero-highlight">
+    Chez <strong>MANCOIFFURE</strong>, chaque coupe est réalisée avec précision et attention.
+    Que ce soit pour une coupe classique, moderne ou un entretien de barbe soigné,
+    le salon vous garantit un résultat propre, tendance et adapté à votre personnalité.
+    
+    <br><br>
+    ✔️ Conseils personnalisés<br>
+    ✔️ Ambiance conviviale<br>
+    ✔️ Travail soigné dans les moindres détails<br>
+    ✔️ Accessibilité et disponibilité toute la semaine
+  </div>
+</section>
 
 <section>
   <h2 class="section-title">Prix et Services</h2>
   <div class="services">
-    <div class="card">✂️ <strong>Coupe + Shampoing</strong><br>15€</div>
-    <div class="card">👦 <strong>Coupe enfant (-12 ans)</strong><br>13€</div>
-    <div class="card">🧔 <strong>Coupe + Barbe</strong><br>20€</div>
-    <div class="card">🪒 <strong>Barbe</strong><br>10€</div>
-    <div class="card">💈 <strong>Défrisage</strong><br>18€</div>
-    <div class="card">⭐ <strong>Coupe + Barbe + Épilation</strong><br>25€</div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <div class="card">
-    <p>📍 Adresse : 14 Boulevard du Général de Gaulle, 83780 Flayosc, Var, France</p>
-    <p>📞 Téléphone : 07 66 96 39 80</p>
-    <p>🕒 Horaires : Lundi au dimanche de 9h à 19h (fermé le mardi)</p>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">Nous trouver</h2>
-  <div id="map"></div>
-  <div style="text-align:center;">
-    <a class="map-button" href="https://www.google.com/maps/dir/?api=1&destination=43.53342136110219,6.39691249292436">Itinéraire</a>
+    <div class="card">✂️ Coupe + Shampoing<br><strong>15€</strong></div>
+    <div class="card">👦 Coupe enfant (-12 ans)<br><strong>13€</strong></div>
+    <div class="card">🧔 Coupe + Barbe<br><strong>20€</strong></div>
+    <div class="card">🪒 Barbe<br><strong>10€</strong></div>
+    <div class="card">💈 Défrisage<br><strong>18€</strong></div>
+    <div class="card">⭐ Coupe + Barbe + Épilation<br><strong>25€</strong></div>
   </div>
 </section>
 
 <section>
   <h2 class="section-title">Photos</h2>
   <div class="gallery">
-    <img src="https://i.pinimg.com/originals/d3/19/cf/d319cfbb51fa761c35a82b954e97e19b.jpg" alt="Coupe 1" />
-    <img src="https://www.masculin.com/wp-content/uploads/sites/2/2021/04/coupe-traits.jpg" alt="Coupe 2" />
-    <img src="https://i.pinimg.com/originals/f0/59/6f/f0596f5dbd13bac80f505b2f4194db89.jpg" alt="Coupe 3" />
+    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033" alt="Coupe homme moderne" />
+    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a" alt="Barbe stylée" />
+    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486" alt="Salon de coiffure" />
   </div>
 </section>
 
-<section id="mentions-legales">
+<section>
+  <h2 class="section-title">Nous trouver</h2>
+  <div id="map"></div>
+  <div style="text-align:center; margin-top:15px;">
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=43.53342136110219,6.39691249292436">Itinéraire Google Maps</a>
+  </div>
+</section>
+
+<section>
   <h2 class="section-title">Mentions légales</h2>
-  <div class="card" style="text-align:left; font-size:1em;">
-    <p><strong>MANCOIFFURE</strong></p>
-    <p>Responsable : Marwan Amimi</p>
-    <p>Statut juridique : SAS – Société par actions simplifiée</p>
-    <p>Adresse : 14 Boulevard du Général de Gaulle, 83780 Flayosc, Var, France</p>
-    <p>Téléphone : 07 66 96 39 80</p>
-    <p>Email : Non communiqué</p>
-    <p>SIRET : 988 208 948 00014</p>
-    <p>Hébergeur du site : À compléter</p>
+  <div class="legal-section">
+    <strong>MANCOIFFURE</strong><br>
+    Responsable : Marwan Amimi<br>
+    Adresse : 14 Boulevard du Général de Gaulle, 83780 Flayosc<br>
+    Téléphone : 07 66 96 39 80<br>
+    SIRET : 988 208 948 00014<br>
+    Hébergement : GitHub Pages
   </div>
-</section>
 
-<section id="confidentialite">
   <h2 class="section-title">Politique de confidentialité</h2>
-  <div class="card" style="text-align:left; font-size:1em;">
-    <p>Ce site peut collecter des données personnelles via des outils de mesure d’audience ou de contact.</p>
-    <p>Les données ne sont ni vendues ni transmises à des tiers.</p>
-    <p>Conformément au RGPD, vous pouvez demander l’accès, la rectification ou la suppression de vos données.</p>
+  <div class="legal-section">
+    Les données éventuellement collectées via le site (appel téléphonique, statistiques anonymes)
+    ne sont ni revendues ni partagées. Conformément au RGPD, vous pouvez demander la
+    modification ou la suppression de vos données.
   </div>
-</section>
 
-<section id="cookies">
   <h2 class="section-title">Politique de cookies</h2>
-  <div class="card" style="text-align:left; font-size:1em;">
-    <p>Ce site utilise des cookies nécessaires à son fonctionnement et des cookies de statistiques.</p>
-    <p>Vous pouvez configurer votre navigateur pour refuser les cookies.</p>
+  <div class="legal-section">
+    Ce site peut utiliser des cookies nécessaires à son bon fonctionnement
+    ainsi que des outils de mesure d’audience.
   </div>
 </section>
 
@@ -143,41 +154,33 @@
 <script>
   const lat = 43.53342136110219;
   const lng = 6.39691249292436;
-
   const map = L.map('map').setView([lat, lng], 17);
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 19
   }).addTo(map);
-
   L.marker([lat, lng]).addTo(map).bindPopup('MANCOIFFURE');
 </script>
 
 <script>
-  // ====== HORAIRES MODIFIABLES FACILEMENT ======
-  const openHour = 9;   // Heure d'ouverture (9h00)
-  const closeHour = 19; // Heure de fermeture (19h00)
-
+  const openHour = 9;
+  const closeHour = 19;
   function updateStatus() {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinutes = now.getMinutes();
     const statusElement = document.getElementById('status');
-
-    if (
-      (currentHour > openHour && currentHour < closeHour) ||
-      (currentHour === openHour) ||
-      (currentHour === closeHour && currentMinutes === 0)
-    ) {
-      statusElement.textContent = "OUVERT de 9h - 19h";
-      statusElement.classList.remove('closed');
+    if ((currentHour > openHour && currentHour < closeHour) ||
+        (currentHour === openHour) ||
+        (currentHour === closeHour && currentMinutes === 0)) {
+      statusElement.textContent = "OUVERT – 9h à 19h";
       statusElement.classList.add('open');
+      statusElement.classList.remove('closed');
     } else {
-      statusElement.textContent = "FERMÉ • Réouverture à 9h";
-      statusElement.classList.remove('open');
+      statusElement.textContent = "FERMÉ – Réouverture 9h";
       statusElement.classList.add('closed');
+      statusElement.classList.remove('open');
     }
   }
-
   updateStatus();
 </script>
 
