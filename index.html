@@ -37,14 +37,14 @@
 
     .btn {
       display:inline-block;
-      margin:10px;
-      padding:14px 30px;
+      margin:10px 8px;
+      padding:12px 22px;
       background:#d4a762;
       color:#000;
       text-decoration:none;
       border-radius:30px;
       font-weight:bold;
-      font-size:1.05em;
+      font-size:0.95em;
       box-shadow:0 4px 15px rgba(212,167,98,0.4);
       transition:all 0.3s ease;
     }
@@ -69,7 +69,14 @@
 
     /* ===== RESPONSIVE MOBILE FIX ===== */
     @media (max-width: 600px) {
-      header { padding:70px 15px; }
+      header { padding:60px 15px; }
+      header h1 { font-size:clamp(1.5em, 6.5vw, 2em); }
+      header p { font-size:0.9em; }
+      .btn { display:inline-block; width:auto; font-size:0.85em; padding:10px 18px; }
+      section { padding:40px 15px; }
+      h2.section-title { font-size:1.5em; }
+      .gallery { grid-template-columns:1fr; }
+    }
       header h1 { font-size:clamp(1.6em, 7vw, 2.2em); letter-spacing:1px; }
       header p { font-size:0.95em; }
       .btn { display:block; margin:12px auto; width:90%; }
@@ -122,9 +129,9 @@
 <section>
   <h2 class="section-title">Photos</h2>
   <div class="gallery">
-    <img src="photos-1.jpg" alt="Intérieur du salon MANCOIFFURE" />
-    <img src="photo-8.jpg" alt="Façade MANCOIFFURE Flayosc" />
-    <img src="photo-6.jpg" alt="Coupe et barbe réalisée au salon" />
+    <img src="photos%201.jpg" alt="Intérieur du salon MANCOIFFURE" />
+    <img src="photo%208.jpg" alt="Façade MANCOIFFURE Flayosc" />
+    <img src="photo%206.jpg" alt="Coupe et barbe réalisée au salon" />
   </div>
 </section>
 
